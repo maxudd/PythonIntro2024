@@ -1,0 +1,9 @@
+class Food: pass
+class Meat(Food): pass
+class Milk(Food): pass
+class Flour(Food): pass
+class Rabbit(Meat): pass
+class Pork(Meat): pass
+class Pasty(Milk, Flour): pass
+class Pie(Rabbit, Pork, Pasty): pass
+

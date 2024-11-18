@@ -1,0 +1,5 @@
+class C:
+    A = 1/0
+    C = "class A(C): pass"
+    D = "class B(C, A): pass"
+

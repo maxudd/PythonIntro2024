@@ -1,0 +1,5 @@
+class object:
+class D(object):
+class E(D):
+class C(D, E):
+
