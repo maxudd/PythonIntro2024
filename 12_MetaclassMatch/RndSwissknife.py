@@ -1,5 +1,12 @@
+"""
+Случайности
+
+https://uneex.org/LecturesCMC/PythonIntro2024/Homework_RndSwissknife
+"""
+
 import random
 from collections.abc import Sequence, Iterable
+
 
 def rnd(a, b=None):
     match a, b:
@@ -13,13 +20,11 @@ def rnd(a, b=None):
             return random.choice(a.split(b))
         case str(), int():
             start = random.randint(0, len(a) - b)
-            return a[start : (start + b)]
+            return a[start: (start + b)]
         case (Sequence() | Iterable()), None:
             return random.choice(list(a))
         case (Sequence() | Iterable()), int():
             return random.choices(list(a), k=b)
-        
-        
 
 # rnd(7)
 # rnd(100, 500)

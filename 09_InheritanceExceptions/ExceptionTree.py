@@ -5,9 +5,9 @@
 объекты-исключения, иерархия которых соответствует двоичному дереву:
 
                      Exception-1
-                    /           \    
+                    /           |
           Exception-2            Exception-3
-          /         \           /          \ 
+          /         |           /          |
     Exception-4 Exception-5 Exception-6 Exception-7
 и т. д.
 
@@ -15,8 +15,11 @@
 дереве. Индекс хранится также в самом исключении в виде поля .n.
 """
 
+
 class ExceptionTree:
+
     tree = dict()
+
     def __init__(self):
         self.tree[1] = type('ex-1', (Exception,), {'n': 1})
 

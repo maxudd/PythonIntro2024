@@ -1,25 +1,37 @@
+"""
+Синхронизация последовательности
+
+Напишите класс Seq(name), экземпляры которого обладают свойством синхронизации
+в порядке их создания. Единственный параметр — name — это уникальный
+идентификатор экземпляра. Класс должен предоставлять корутину .run(), которая
+в нужный момент выводит name на стандартный вывод; возвращает она тоже name.
+"""
+
 import asyncio
 import random
 
+
 class Seq:
+
     _counter = 0
-    _events = {}  
+    _events = {}
 
     def __init__(self, name):
         self.name = name
-        self._id = Seq._counter  
+        self._id = Seq._counter
         Seq._counter += 1
-        Seq._events[self._id] = asyncio.Event()  
+        Seq._events[self._id] = asyncio.Event()
         if self._id == 0:
-            Seq._events[self._id].set()  
+            Seq._events[self._id].set()
 
     async def run(self):
-        await Seq._events[self._id].wait()  
-        print(self.name)  
+        await Seq._events[self._id].wait()
+        print(self.name)
         if (next_id := self._id + 1) in Seq._events:
-            Seq._events[next_id].set()  
+            Seq._events[next_id].set()
         return self.name
-            
+
+
 # async def main(*names):
 #     seq = [Seq(name) for name in names]
 #     seq.sort(key=lambda x: x.name % 17)

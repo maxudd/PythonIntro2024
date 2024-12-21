@@ -10,6 +10,7 @@
 
 from itertools import zip_longest
 
+
 def seesaw(seq):
     subseq1 = []
     subseq2 = []
@@ -28,5 +29,3 @@ def seesaw(seq):
 # print(*seesaw([1] * 20))
 # print(*seesaw(range(2, 40, 3)))
 # print(*seesaw(range(3, 44, 3)))
-
-

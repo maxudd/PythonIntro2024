@@ -8,6 +8,7 @@
 значение, будет возвращаться это значение до тех пор, пока поле не удалят.
 """
 
+
 class AddSize:
     def __get__(self, obj, cls):
         res = 0
@@ -16,6 +17,7 @@ class AddSize:
         elif hasattr(obj, '__abs__'):
             res = obj.__abs__()
         return res
+
 
 def sizer(cls):
     cls.size = AddSize()

@@ -10,7 +10,8 @@ MRO C3
 """
 
 import re
-        
+
+
 def merge(seqs):
     res = []
     i = 0
@@ -31,6 +32,7 @@ def merge(seqs):
                     del seq[0]
     return res if cand else None
 
+
 linears = dict()
 
 while line := input():
@@ -40,7 +42,8 @@ while line := input():
             linears[cls_name] = [cls_name]
         else:
             parent_list = parents.split(', ')
-            merge_res = merge([*[linears[x][:] for x in parent_list], parent_list])
+            merge_res = merge([*[linears[x][:] for x in parent_list],
+                               parent_list])
             if not merge_res:
                 print('No')
                 break

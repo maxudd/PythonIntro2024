@@ -7,11 +7,11 @@
 это поле должно быть равно "Sire".
 """
 
+
 class Sire:
     def __init__(self):
         self._parent = self.__class__.mro()[1].__name__
-    
+
     @property
     def parent(self):
         return self._parent
-    

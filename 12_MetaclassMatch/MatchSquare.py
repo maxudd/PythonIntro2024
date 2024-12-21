@@ -1,29 +1,23 @@
+"""
+Прямоугольный класс
+
+https://uneex.org/LecturesCMC/PythonIntro2024/Homework_MatchSquare
+"""
+
+
 class Square:
+
     __match_args__ = "x", "y", "w"
+
     def __init__(self, x, y, w):
         self.x = x
         self.y = y
         self.w = w
-        # self._h = w
-        # self._s = self._w ** 2
-        # self._center = self._x + self._w / 2, self._y + self._h / 2
-
-    # @property
-    # def x(self):
-    #     return self._x
-    
-    # @property
-    # def y(self):
-    #     return self._y
-
-    # @property
-    # def w(self):
-    #     return self._w
 
     @property
     def h(self):
         return self.w
-    
+
     @property
     def s(self):
         return self.w ** 2
@@ -31,27 +25,11 @@ class Square:
     @property
     def center(self):
         return self.x + self.w / 2, self.y + self.w / 2
-    
-    # @x.setter
-    # def x(self, value):
-    #     self._x = value
-    #     self._center = self._x + self._w / 2, self._y + self._h / 2
-
-    # @y.setter
-    # def y(self, value):
-    #     self._y = value
-    #     self._center = self._x + self._w / 2, self._y + self._h / 2
-
-    # @w.setter
-    # def w(self, value):
-    #     self._w = value
-    #     self.x = self._center[0] - self._w / 2
-    #     self.y = self._center[1] - self._h / 2
 
     @h.setter
     def h(self, value):
         self.w = value
-    
+
     @s.setter
     def s(self, value):
         pass
@@ -60,9 +38,8 @@ class Square:
     def center(self, value):
         match value:
             case a, b, c, d:
-                self._center = a + c, b + d              
+                self._center = a + c, b + d
             case _, _:
                 self._center = value
         self.x = self._center[0] - self.w / 2
         self.y = self._center[1] - self.w / 2
-

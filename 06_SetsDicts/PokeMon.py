@@ -12,7 +12,8 @@
 
 from collections import defaultdict
 
-dictcolplay, dictcolcard, dictplay = defaultdict(list), defaultdict(list), defaultdict(int)
+dictcolplay, dictcolcard, dictplay = defaultdict(list), defaultdict(list), \
+                                                        defaultdict(int)
 
 while st := input():
     a, b = st.split(' / ')
@@ -27,4 +28,5 @@ for player, cols in dictcolplay.items():
         cardlist += dictcolcard[col]
     dictplay[player] = len(set(cardlist))
 
-print(*sorted([player for player, cards in dictplay.items() if cards == max(dictplay.values())]), sep='\n')
+print(*sorted([player for player, cards in dictplay.items()
+               if cards == max(dictplay.values())]), sep='\n')

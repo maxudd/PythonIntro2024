@@ -29,7 +29,9 @@ def is_convex(points):
     prev = 0
     curr = 0
     for i in range(n):
-        curr = cross_product(points[i], points[(i + 1) % n], points[(i + 2) % n])
+        curr = cross_product(points[i],
+                             points[(i + 1) % n],
+                             points[(i + 2) % n])
         if curr:
             if curr * prev < 0:
                 return False

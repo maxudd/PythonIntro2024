@@ -1,3 +1,27 @@
+"""
+Морзянка
+
+Написать класс morse("строка"), экземпляр которого переводит арифметические
+выражения в морзянку! В выражении «+» — это точка, «-» — тире, а «~» —
+промежуток между буквами (бывает только между буквами и только один,
+проверять не надо).
+    * Параметр — строка, состоящая либо из символов, либо из слов.
+    * Строка состоит из слов, если в ней есть хотя бы один пробел (в этом
+      случае между словами стоит ровно один пробел)
+    * Если в строке три элемента, они задают точку, точку на конце
+      передаваемой буквы (традиционно обозначается другим слогом) и тире
+    * Два элемента задают точку (она же точка на конце буквы) и тире
+    * Если элемента четыре, четвёртый — это то, что выводится в конце
+      сообщения
+    * По умолчанию:
+        * Если параметров нет, это слова "di", "dit" и "dah".
+        * Если параметры — слова: в конце сообщения выводится ".", разделители
+          при выводе: пробел между сигналами и ", " между буквами.
+        * Если параметры — символы: непуст только разделитель между буквами
+          (это пробел).
+"""
+
+
 class morse:
     def __init__(self, string='', outstr=[], letter=[]):
         self.outstr = outstr
@@ -31,8 +55,11 @@ class morse:
             morse.dot, morse.dot_end, morse.dash = 'di', 'dit', 'dah'
             morse.sig_sep, morse.let_sep, morse.end = ' ', ', ', '.'
 
-    def __pos__(self):           
-        return morse(outstr=self.outstr, letter=[morse.dot] + self.letter) if self.letter else morse(outstr=self.outstr, letter=[morse.dot_end] + self.letter)
+    def __pos__(self):
+        return morse(outstr=self.outstr,
+                     letter=[morse.dot] + self.letter) if self.letter else \
+                             morse(outstr=self.outstr,
+                                   letter=[morse.dot_end] + self.letter)
 
     def __neg__(self):
         return morse(outstr=self.outstr, letter=[morse.dash] + self.letter)
@@ -40,11 +67,10 @@ class morse:
     def __invert__(self):
         return morse(outstr=[self.letter] + self.outstr, letter=[])
 
-
     def __str__(self):
         self.outstr = [self.letter] + self.outstr
-        return self.let_sep.join(map(lambda x: self.sig_sep.join(x), self.outstr)) + self.end
-
+        return self.let_sep.join([self.sig_sep.join(x) for x in self.outstr]) \
+            + self.end
 
 
 # print(-+morse())
@@ -55,4 +81,4 @@ class morse:
 # print(--+~-~-++~+++-morse("..-|"))
 # print(--+~-~-++~+++-morse("dot DOT dash"))
 # print(--+~-~-++~+++-morse("ai aui oi "))
-# print(--+~-~-++~+++-morse("dot dot dash ///")) 
+# print(--+~-~-++~+++-morse("dot dot dash ///"))

@@ -1,3 +1,9 @@
+"""
+Вас здесь не стояло!
+
+https://uneex.org/LecturesCMC/PythonIntro2024/Homework_FilterQueue
+"""
+
 import asyncio
 
 

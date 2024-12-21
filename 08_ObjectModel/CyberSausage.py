@@ -19,6 +19,11 @@
 from fractions import Fraction as fr
 from itertools import batched, cycle, islice, chain
 
+
+def help(cont, num):
+    return batched(islice(chain.from_iterable(cycle(cont)), num), 12)
+
+
 class Sausage:
 
     def __init__(self, strr='pork!', v=1):
@@ -30,9 +35,15 @@ class Sausage:
         if self.v < fr(1/12):
             return '/|\n||\n||\n||\n\\|'
         num = (12 * self.v).__floor__()
-        up = '/' + '\\/'.join(list(map(lambda x: ''.join(x), batched(islice(cycle('-'), num), 12))))
-        mid = '|' + '||'.join(list(map(lambda x: ''.join(x), batched(islice(chain.from_iterable(cycle(self.full_content)), num), 12)))) + '|\n'
-        down = '\\' + '/\\'.join(list(map(lambda x: ''.join(x), batched(islice(cycle('-'), num), 12))))
+        up = '/' + '\\/'.join(list(map(lambda x: ''.join(x),
+                                       batched(islice(cycle('-'), num), 12))))
+        mid = '|' \
+            + '||'.join([''.join(x) for x in help(self.full_content, num)]) \
+            + '|\n'
+
+        down = '\\' \
+            + '/\\'.join([''.join(x) for x in
+                          batched(islice(cycle('-'), num), 12)])
         if num % 12:
             up += '|'
             down += '|'
@@ -43,13 +54,13 @@ class Sausage:
 
     def __add__(self, other):
         return Sausage(self.strr, self.v + other.v)
-    
-    def __sub__(self, other):
-        return Sausage(self.strr, self.v - other.v if self.v - other.v > 0 else 0)
-    
+
+    def __sub__(self, oth):
+        return Sausage(self.strr, self.v - oth.v if self.v - oth.v > 0 else 0)
+
     def __mul__(self, other):
         return Sausage(self.strr, self.v * other)
-    
+
     __rmul__ = __mul__
 
     def __truediv__(self, other):

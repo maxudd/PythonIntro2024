@@ -1,3 +1,9 @@
+"""
+Патриоты Зимбабве
+
+https://uneex.org/LecturesCMC/PythonIntro2024/Homework_EncPairs
+"""
+
 import sys
 
 codings = ['KOI8-R', 'CP1251', 'CP866', 'MACCYRILLIC', 'ISO-8859-5', 'CP855']
@@ -15,4 +21,3 @@ for c2 in codings:
                         exit(0)
                 except Exception:
                     pass
-

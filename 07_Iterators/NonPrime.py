@@ -6,8 +6,9 @@
 превосходящих целое положительное n (по умолчанию — 0).
 """
 
+
 def nonprime(n=0):
-    if not n: 
+    if not n:
         yield 1
     n += 1
     while True:

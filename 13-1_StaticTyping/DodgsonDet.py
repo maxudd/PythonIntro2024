@@ -1,3 +1,9 @@
+"""
+
+
+"""
+
+
 def minor_det(minor: list[list[int]]) -> int:
     return minor[0][0] * minor[1][1] - minor[0][1] * minor[1][0]
 

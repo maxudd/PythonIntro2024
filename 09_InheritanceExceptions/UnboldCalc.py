@@ -23,7 +23,7 @@ while line := input():
                         print('Name error')
                     except SyntaxError:
                         print('Syntax error')
-                    except:
+                    except Exception:
                         print('Runtime error')
                 else:
                     print('Assignment error')
@@ -35,5 +35,5 @@ while line := input():
                     print('Name error')
                 except SyntaxError:
                     print('Syntax error')
-                except:
+                except Exception:
                     print('Runtime error')

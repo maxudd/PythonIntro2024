@@ -1,12 +1,23 @@
+"""
+Интервалы
+
+https://uneex.org/LecturesCMC/PythonIntro2024/Homework_BraceDecode
+"""
+
 import re
 from fractions import Fraction as fr
 
+
 def interval(diap):
-    ultimate_pattern = re.compile(r'^([\[|\(])\s*(-)?\s*(\d+\.\d+|\d+)\s*(\.\.(([1-9]\d+|[2-9])+)\.\.|\.{2,})\s*(-)?\s*(\d+\.\d+|\d+)\s*([\]|\)])$')
-    ult_res = ultimate_pattern.search(diap)
+    open_pat = r'([\[|\(])\s*'
+    num = r'(-)?\s*(\d+\.\d+|\d+)\s*'
+    mid_pat = r'(\.\.(([1-9]\d+|[2-9])+)\.\.|\.{2,})\s*'
+    close_pat = r'([\]|\)])'
+    ult_pattern = re.compile(fr'^{open_pat}{num}{mid_pat}{num}{close_pat}$')
+    ult_res = ult_pattern.search(diap)
     if not ult_res:
         return
-    open_bracket, sign_st, st, mid, leng, _, sign_en, en, close_bracket = ult_res.groups()
+    open, sign_st, st, mid, leng, _, sign_en, en, close = ult_res.groups()
     if leng:
         length = int(leng) - 1
     else:
@@ -15,13 +26,13 @@ def interval(diap):
     end = fr(sign_en + en) if sign_en else fr(en)
 
     step = (end - start) / length
-    if open_bracket == '(':
-        if close_bracket == ')':
+    if open == '(':
+        if close == ')':
             end -= step
         else:
             start += step
     else:
-        if close_bracket == ')':
+        if close == ')':
             end -= step
 
     while start != end:

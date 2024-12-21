@@ -9,6 +9,13 @@
 одинаковых расстояний в списке нет.
 """
 
+
+def distance(x):
+    return (x[0][0] - x[1][0])**2 + \
+           (x[0][1] - x[1][1])**2 + \
+           (x[0][2] - x[1][2])**2
+
+
 galaxies = dict()
 
 while st := input():
@@ -20,8 +27,6 @@ while st := input():
     galaxies[coord] = name
 
 pairs = [(x, y) for x in galaxies for y in galaxies if x[0] > y[0]]
-
-distance = lambda x: (x[0][0] - x[1][0])**2 + (x[0][1] - x[1][1])**2 + (x[0][2] - x[1][2])**2
 
 gal1, gal2 = max(pairs, key=distance)
 

@@ -1,3 +1,9 @@
+"""
+Проверка числа
+
+https://uneex.org/LecturesCMC/PythonIntro2024/Homework_CorrectNumber
+"""
+
 import re
 
 number = input()
